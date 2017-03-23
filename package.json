@@ -1,0 +1,22 @@
+{
+  "name": "express-training",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pritig-cuelogic/express.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pritig-cuelogic/express/issues"
+  },
+  "homepage": "https://github.com/pritig-cuelogic/express#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
