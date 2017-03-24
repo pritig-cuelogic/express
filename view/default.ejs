@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partials/pages/head.ejs  %>
+  </head>
+  <body class="<%= classname %>" >
+  <% include partials/pages/header.ejs  %>
+    <div class="container">
+        <% if(typeof(device) != 'undefined') { %>
+        	<p>Device data</p>
+        	<ul>
+        	<% for(i=0; i<device.length; i++) { %>
+        		<li><%= device[i].device_id %></li>
+        	<% } %>
+        	</ul>
+        <% } %>
+	
+	</div>
+	<% include partials/pages/footer.ejs  %>
+   <% include partials/pages/jsdefault.ejs  %>
+  </body>
+</html>
+
