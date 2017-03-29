@@ -7,6 +7,7 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname+ '/view');
 app.locals.pagetitle = 'pagetitle';
 
+app.use(logger(':method :url :status'));
 routes.index(app);
 app.use(function(req, res, next) {
   console.log("middleware %s %s", req.method, req.url)
