@@ -14,7 +14,13 @@ var DeviceSchema = new Schema({
     updated_on: {type: Date}
 });
 
+var UserSchema = new Schema({
+    username: {type: String, required: true},
+    password: {type: String, required: true}
+});
+
 var Collection = {};
 Collection.Device = MongooseConn.model('Device', DeviceSchema);
+Collection.User = MongooseConn.model('users', UserSchema);
 
 module.exports = Collection;
