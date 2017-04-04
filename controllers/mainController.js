@@ -2,6 +2,7 @@ var deviceManager = require('../models/datamodel.js');
 
 exports.index =  function (req, res) {
 deviceManager.deviceData().then(function(result){
+	console.log(result);
 	res.render('default', {title: "Home Page",
 	 		classname: 'home',
 			device: result
@@ -10,8 +11,7 @@ deviceManager.deviceData().then(function(result){
 	})
 	.catch(function(err){
        console.log(err);
-});
-
+	});
 };
 
 exports.about = function (req, res) {
@@ -19,7 +19,7 @@ exports.about = function (req, res) {
  		title: "About Page",
 		classname: 'about'
 	}
-);
+	);
 };
 
 exports.login = function (req, res) {
