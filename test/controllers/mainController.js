@@ -63,17 +63,3 @@ describe('mainController index()', function() {
     });
 });
 
-describe('mainController users()', function() {
-	var deviceManagerStub;
-	beforeEach(function() {
-		deviceControllerStub = sinon.stub(deviceModel, 'userData');
-    	deviceControllerStub.withArgs({username: "priti"}).returns('Promise');
-	});
-	afterEach(function() {
-        deviceControllerStub.restore();
-    });
-	it('mainController users() should be function', function(done) {
-    	expect(controller.users).to.be.a('function');
-        done();
-    })
-});
