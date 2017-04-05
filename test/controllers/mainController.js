@@ -4,15 +4,16 @@ var chai = require('chai'),
     should = chai.should(),
     expect = chai.expect,
     sinon = require('sinon'),
-    
+    server = require('../../app.js'),
+    url,
     chaiAsPromised = require("chai-as-promised");
 	var mockHeaders = {
 	headers : {
 		'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InByaXRpIiwiaWF0IjoxNDkxMjkyNzY3LCJleHAiOjE0OTEyOTQyMDd9.o7NzE6dCgpxcD0VOQl9jWgUNJQztlGOLoBCwBiCvHiQ',
-    'content-type': 'application/x-www-form-urlencoded'
-	}
-    
-};
+	    'content-type': 'application/x-www-form-urlencoded'
+		}
+	    
+	};
 		var resolveData = [{
 			 "device_id" : "469efc00-d0d3-11e6-a53a-77f95b5b2901",
 			 "session_data" : [ 
@@ -38,16 +39,14 @@ var chai = require('chai'),
 
 		}];
 
-//deviceManager = require('../../models/datamodel.js');
-//, connection = require('../models/connection.js');
-//require('sinon-as-promised');
+
 chai.use(chaiAsPromised);
 describe('mainController index()', function() {
 
     var deviceManagerStub;
     beforeEach(function() {
-        deviceControllerStub = sinon.stub(deviceModel, 'deviceData');
-       // console.log(deviceControllerStub.args);
+    	deviceControllerStub = sinon.stub(deviceModel, 'deviceData');
+        deviceControllerStub.resolves(resolveData);
     });
     afterEach(function() {
         deviceControllerStub.restore();
@@ -57,7 +56,24 @@ describe('mainController index()', function() {
         done();
     });
     it('called function', function(done) {
-    	deviceControllerStub.resolves(resolveData);
-		done();
+    		controller.index();
+	    	sinon.assert.called(deviceControllerStub);
+	    	done();
+	  
     });
+});
+
+describe('mainController users()', function() {
+	var deviceManagerStub;
+	beforeEach(function() {
+		deviceControllerStub = sinon.stub(deviceModel, 'userData');
+    	deviceControllerStub.withArgs({username: "priti"}).returns('Promise');
+	});
+	afterEach(function() {
+        deviceControllerStub.restore();
+    });
+	it('mainController users() should be function', function(done) {
+    	expect(controller.users).to.be.a('function');
+        done();
+    })
 });

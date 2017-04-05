@@ -5,7 +5,8 @@ const Promise = require('bluebird');
 var deviceManager = {};
 
 deviceManager.deviceData = function(){
-	 return new Promise(function(resolve, reject){
+    console.log("device data");
+     return new Promise(function(resolve, reject){
         var condition = {} ;
         Device.find(condition, function(error, response){
             if(error) {

@@ -1,8 +1,7 @@
 var deviceManager = require('../models/datamodel.js');
 
 exports.index =  function (req, res) {
-deviceManager.deviceData().then(function(result){
-	console.log(result);
+	deviceManager.deviceData().then(function(result){
 	res.render('default', {title: "Home Page",
 	 		classname: 'home',
 			device: result
@@ -31,6 +30,12 @@ exports.login = function (req, res) {
 };
 
 exports.users = function(username) {
-	return deviceManager.userData(username);
+	if(username) {
+		return deviceManager.userData(username);
+	}
+	else{
+		throw "username not present";
+	}
+	
 }
 

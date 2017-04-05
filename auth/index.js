@@ -5,7 +5,7 @@ var controller = require('../controllers/mainController');
 exports.authentication = function (req, res, next) {
         var data = req.body;
         controller.users(data.username).then(function(result){
-        var response; console.log(result.username);
+        var response; 
         if(!result){
            res.boom.badRequest("unkown user");
            

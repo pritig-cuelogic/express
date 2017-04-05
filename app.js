@@ -7,7 +7,7 @@ var boom = require('express-boom');
 var cors = require('cors');
 var app = express();
 
-var routes = require('./routes');
+var routes = require('./routes')
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname+ '/view');
@@ -31,3 +31,4 @@ app.use(function (err, req, res, next) {
 var server = app.listen(3000, function(){
 	console.log("listining on port 3000");
 });
+module.exports = app;
