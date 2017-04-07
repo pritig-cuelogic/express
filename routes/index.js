@@ -3,9 +3,15 @@ var router = express.Router();
 var controller = require('../controllers/mainController');
 var auth = require('../auth/index');
 
-router.get('/', controller.index);
+var isAuthenticated = function (req, res, next) {
+  if (req.isAuthenticated())
+    return next();
+  res.redirect('/');
+};
 
-router.get('/about', controller.about);
+router.get('/', isAuthenticated,  controller.index);
+
+router.get('/about', isAuthenticated, controller.about);
 
 router.get('/login', controller.login);
 
@@ -14,6 +20,7 @@ router.post('/login',
 	  function(req, res) {
 	    res.redirect('/about');
 	  });
+
 
 
 module.exports = router;
